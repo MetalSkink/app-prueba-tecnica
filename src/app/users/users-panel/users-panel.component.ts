@@ -5,11 +5,14 @@ import { User } from '../interfaces/response.interface';
 @Component({
   selector: 'app-users-panel',
   templateUrl: './users-panel.component.html',
-  styles: []
+  styleUrls: ['./users-panel.component.css']
 })
 export class UsersPanelComponent implements OnInit {
 
   constructor(private userService:UserService) { }
+
+  pagina:number = 1;
+  mostrados:number = 5;
 
   users: User[] = [];
 
@@ -17,11 +20,17 @@ export class UsersPanelComponent implements OnInit {
     this.userService.getUsuarios()
       .subscribe(resp => {
         this.users=resp.data;
-        console.log(this.users);
       })
   }
 
   buscar(){
-    console.log('click');
+    console.log(this.pagina);
+    console.log(this.mostrados);
+    this.userService.getUsuariosPorParametro(this.pagina,this.mostrados)
+      .subscribe(resp => {
+        console.log(resp.data);
+        this.users=resp.data;
+      })
+
   }
 }

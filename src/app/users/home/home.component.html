@@ -13,6 +13,12 @@
         <span>Panel de empleados</span>
       </a>
     </mat-nav-list>
+    <mat-nav-list (click)="navegar()">
+      <a mat-list-item (click)="sidenav.toggle()">
+        <mat-icon mat-list-icon>warehouse</mat-icon>
+        <span>Panel de almacen</span>
+      </a>
+    </mat-nav-list>
   </mat-sidenav>
 
   <mat-toolbar>

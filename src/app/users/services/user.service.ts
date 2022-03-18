@@ -20,7 +20,7 @@ export class UserService {
   }
 
   getUsuariosPorParametro(page:number,limit:number):Observable<APIResponse>{
-    return this.http.get<APIResponse>(`${this.baseUrl}/?page=1&limit=10`,{headers: this.headers})
+    return this.http.get<APIResponse>(`${this.baseUrl}/?page=${page}&limit=${limit}`,{headers: this.headers})
   }
 
 
