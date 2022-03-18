@@ -20,4 +20,8 @@ export class UsersPanelComponent implements OnInit {
         console.log(this.users);
       })
   }
+
+  buscar(){
+    console.log('click');
+  }
 }

@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
   },
   {
+    path: 'almacen',
+    loadChildren: () => import('./almacen/almacen.module').then(m => m.AlmacenModule)
+  },
+  {
     path: '**',
     redirectTo: 'users'
   }

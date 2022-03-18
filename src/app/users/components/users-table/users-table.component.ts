@@ -1,5 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { Component, Input } from '@angular/core';
 import { User } from '../../interfaces/response.interface';
 
 @Component({
@@ -27,9 +26,4 @@ export class UsersTableComponent {
   @Input()
   users : User[] = [];
 
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  // ngAfterViewInit() {
-  //   this.dataSource.paginator = this.paginator;
-  // }
 }
