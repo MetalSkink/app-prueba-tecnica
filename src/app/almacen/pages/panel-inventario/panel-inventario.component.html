@@ -1,6 +1,8 @@
 <div class="fondo">
     <div class="container">
-        <h3 style="text-align: justify">1.Realice un algoritmo que resuelva el siguiente problema: Se tiene una tabla con el inventario por bodegas de un producto en específico. Como ejemplo luce de la siguiente forma (Diseñe el algoritmo asumiendo que la tabla tiene una alta cantidad
+        <img src="https://www.coronatoolsusa.com/hs-fs/hubfs/Corona_6-16/corona_website-10.png?width=684&name=corona_website-10.png">
+
+        <h3>1.Realice un algoritmo que resuelva el siguiente problema: Se tiene una tabla con el inventario por bodegas de un producto en específico. Como ejemplo luce de la siguiente forma (Diseñe el algoritmo asumiendo que la tabla tiene una alta cantidad
             de datos, la información de abajo es solo para entender la estructura):
         </h3>
 
@@ -23,23 +25,72 @@
             </tr>
         </table>
 
-        <h3 style="text-align: justify">A partir de una entrada por compra, se requiere conocer el nuevo costo medio ponderado del producto. Los parámetros que recibe el programa son el código del producto (códigoProducto), la cantidad de producto comprada (CantidadCompra), la “instalación
+        <h3>A partir de una entrada por compra, se requiere conocer el nuevo costo medio ponderado del producto. Los parámetros que recibe el programa son el código del producto (códigoProducto), la cantidad de producto comprada (CantidadCompra), la “instalación
             a costear” y el precio unitario de la compra (PrecioCompra) </h3>
 
         <h2>Se reciben 900 palas código 155882 en la instalación DI a un precio de 35.</h2>
 
-        <!--h1>Costo medio ponderado</h1>
-      <label>
-          <input id="Codigoproducto" type="number" placeholder="Codigo de producto: ">
-      </label>
-      <label>
-          <input id="Cantidadcompra" type="number" placeholder="Cantidad de compra: ">
-      </label>
-      <label>
-        <input id="Instalacion" type="string" placeholder="Instalacion: ">
-    </label>
-      <label>
-        <input id="PrecioCompra" type="number" placeholder="Precio de compra: ">
-    </label-->
-        <button type="button" (click)="click()">Calcular</button>
+        <h1><strong>Coste medio ponderado</strong></h1>
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form__group field">
+                    <input class="form__field" id="codigo" [(ngModel)]="codigoFormulario" type="number" placeholder="Codigo de producto:">
+                    <label class="form__label">Codigo de producto:</label>
+                </div>
+                <div class="form__group field">
+                    <input class="form__field" id="productos" [(ngModel)]="productoNombre" type="string" placeholder="Nombre de producto: ">
+                    <label class="form__label">Nombre de producto:</label>
+                </div>
+                <div class="form__group field">
+                    <input class="form__field" id="palas" [(ngModel)]="cantidadFormulario" type="number" placeholder="Cantidad de compra: ">
+                    <label class="form__label">Cantidad de compra:</label>
+                </div>
+                <div class="form__group field">
+                    <input class="form__field" id="instalacion" [(ngModel)]="instalacionFormulario" type="text" placeholder="Instalacion: ">
+                    <label class="form__label">Instalacion:</label>
+                </div>
+                <div class="form__group field">
+                    <input class="form__field" id="storage" [(ngModel)]="bodega" type="text" placeholder="Bodega: ">
+                    <label class="form__label">Bodega:</label>
+                </div>
+                <div class="form__group field">
+                    <input class="form__field" id="precio" [(ngModel)]="precioFormulario" type="number" placeholder="Precio de Compra: ">
+                    <label class="form__label" [(ngModel)]="precioFormulario">Precio de compra:</label>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="resultado">
+                    <tr>
+                        <th>Inventario valorado:</th>
+                        <th>Costo de entrada:</th>
+                        <th>Inventario final:</th>
+                        <th>Costo final:</th>
+                        <th>Costo medio:</th>
+                    </tr>
+                    <tr>
+                        <td>{{inventarioValorado}} </td>
+                        <td> {{costoEntrada}} </td>
+                        <td>{{inventarioFinal}} </td>
+                        <td>{{costoFinal}} </td>
+                        <td>{{costoMedio}} </td>
+                    </tr>
+                </div>
+            </div>
+        </div>
+        <div style="padding-top: 2em;">
+            <button mat-raised-button color="warn" (click)="click()">Calcular</button>
+        </div>
     </div>
+    <footer class="footer bg-dark text-center">
+        <div class="container">
+
+            <p> &copy; 2022 | Corona Clipper</p>
+
+        </div>
+    </footer>
