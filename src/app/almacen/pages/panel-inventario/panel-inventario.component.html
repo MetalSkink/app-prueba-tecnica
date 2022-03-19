@@ -1,1 +1,88 @@
-<p>panel-inventario works!</p>
+<div class="fondo">
+    <div class="container">
+        <h3 style="text-align: justify">1.Realice un algoritmo que resuelva el siguiente problema: Se tiene una tabla con el inventario por bodegas de un producto en específico. Como ejemplo luce de la siguiente forma (Diseñe el algoritmo asumiendo que la tabla tiene una alta cantidad
+            de datos, la información de abajo es solo para entender la estructura):
+        </h3>
+
+        <table>
+            <tr>
+                <th>Codigo</th>
+                <th>Producto</th>
+                <th>Instalación</th>
+                <th>Bodega</th>
+                <th>Inventario</th>
+                <th>Costo Unitario</th>
+            </tr>
+            <tr>
+                <td>155882</td>
+                <td>PALA 5560-2</td>
+                <td>IC</td>
+                <td>01</td>
+                <td>1000</td>
+                <td>41,70</td>
+            </tr>
+            <tr>
+                <td>155882</td>
+                <td>PALA 5560-2</td>
+                <td>IC</td>
+                <td>EX</td>
+                <td>500</td>
+                <td>41,70</td>
+            </tr>
+            <tr>
+                <td>155882</td>
+                <td>PALA 5560-2</td>
+                <td>DI</td>
+                <td>DI</td>
+                <td>1300</td>
+                <td>36,00</td>
+            </tr>
+            <tr>
+                <td>155882</td>
+                <td>PALA 5560-2</td>
+                <td>DI</td>
+                <td>CD</td>
+                <td>1000</td>
+                <td>36,00</td>
+            </tr>
+            <tr>
+                <td>352425</td>
+                <td>Cuchilla 25"</td>
+                <td>IC</td>
+                <td>01</td>
+                <td>2000</td>
+                <td>8,3</td>
+            </tr>
+            <tr>
+                <td>352425</td>
+                <td>Cuchilla 25</td>
+                <td>IC</td>
+                <td>EX</td>
+                <td>500</td>
+                <td>8,3</td>
+            </tr>
+        </table>
+
+        <h3 style="text-align: justify">A partir de una entrada por compra, se requiere conocer el nuevo costo medio ponderado del producto. Los parámetros que recibe el programa son el código del producto (códigoProducto), la cantidad de producto comprada (CantidadCompra), la “instalación
+            a costear” y el precio unitario de la compra (PrecioCompra) </h3>
+
+        <h2>Se reciben 900 palas código 155882 en la instalación DI a un precio de 35.</h2>
+
+        <!--h1>Costo medio ponderado</h1>
+      <label>
+          <input id="Codigoproducto" type="number" placeholder="Codigo de producto: ">
+      </label>
+      <label>
+          <input id="Cantidadcompra" type="number" placeholder="Cantidad de compra: ">
+      </label>
+      <label>
+        <input id="Instalacion" type="string" placeholder="Instalacion: ">
+    </label>
+      <label>
+        <input id="PrecioCompra" type="number" placeholder="Precio de compra: ">
+    </label-->
+        <button type="button" onclick="CalcularValores">Calcular</button>
+
+
+    </div>
+    <script src="/src/app/almacen/pages/panel-inventario/index.js"></script>
