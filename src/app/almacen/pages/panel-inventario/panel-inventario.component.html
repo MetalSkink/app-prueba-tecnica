@@ -13,53 +13,13 @@
                 <th>Inventario</th>
                 <th>Costo Unitario</th>
             </tr>
-            <tr>
-                <td>155882</td>
-                <td>PALA 5560-2</td>
-                <td>IC</td>
-                <td>01</td>
-                <td>1000</td>
-                <td>41,70</td>
-            </tr>
-            <tr>
-                <td>155882</td>
-                <td>PALA 5560-2</td>
-                <td>IC</td>
-                <td>EX</td>
-                <td>500</td>
-                <td>41,70</td>
-            </tr>
-            <tr>
-                <td>155882</td>
-                <td>PALA 5560-2</td>
-                <td>DI</td>
-                <td>DI</td>
-                <td>1300</td>
-                <td>36,00</td>
-            </tr>
-            <tr>
-                <td>155882</td>
-                <td>PALA 5560-2</td>
-                <td>DI</td>
-                <td>CD</td>
-                <td>1000</td>
-                <td>36,00</td>
-            </tr>
-            <tr>
-                <td>352425</td>
-                <td>Cuchilla 25"</td>
-                <td>IC</td>
-                <td>01</td>
-                <td>2000</td>
-                <td>8,3</td>
-            </tr>
-            <tr>
-                <td>352425</td>
-                <td>Cuchilla 25</td>
-                <td>IC</td>
-                <td>EX</td>
-                <td>500</td>
-                <td>8,3</td>
+            <tr *ngFor="let producto of productos">
+                <td>{{producto.codigo}}</td>
+                <td>{{producto.producto}}</td>
+                <td>{{producto.instalacion}}</td>
+                <td>{{producto.bodega}}</td>
+                <td>{{producto.inventario}}</td>
+                <td>{{producto.costoUnitario}}</td>
             </tr>
         </table>
 
@@ -81,8 +41,5 @@
       <label>
         <input id="PrecioCompra" type="number" placeholder="Precio de compra: ">
     </label-->
-        <button type="button" onclick="CalcularValores">Calcular</button>
-
-
+        <button type="button" (click)="click()">Calcular</button>
     </div>
-    <script src="/src/app/almacen/pages/panel-inventario/index.js"></script>
