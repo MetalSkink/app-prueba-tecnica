@@ -64,6 +64,19 @@ export class PanelInventarioComponent implements OnInit {
 }
 ]
 
+codigoFormulario: number = 0
+productoNombre: string = ''
+cantidadFormulario: number = 0
+instalacionFormulario: string = ''
+bodega: string = ""
+precioFormulario: number = 0
+//---------------------------------------------------------
+
+inventarioValorado!: number;
+costoEntrada!: number;
+inventarioFinal!: number;
+costoFinal!: number;
+costoMedio!: number;
 
 
 CalcularValores(palas: number, codigo:number, instalacion:string, precio:number):void {
@@ -71,25 +84,28 @@ CalcularValores(palas: number, codigo:number, instalacion:string, precio:number)
   let productosFiltrados = filtrarProductos(this.productos, codigo, instalacion);
 
   let inventarioValorado = CalcularInventarioValorado(productosFiltrados);
-  console.log('Inventario Valorado:', inventarioValorado);
+  this.inventarioValorado = inventarioValorado;
 
   let costoEntrada = palas * precio;
-  console.log('Costo Entrada:', costoEntrada);
+  this.costoEntrada = costoEntrada;
 
   let inventarioFinal = CalcularInventarioFinal(productosFiltrados, palas)
-  console.log('Inventario Final:', inventarioFinal);
+  this.inventarioFinal = inventarioFinal;
 
   let costoFinal = inventarioValorado + costoEntrada
-  console.log('Costo Final:', costoFinal);
+  this.costoFinal = costoFinal;
 
   let costoMedio = costoFinal / inventarioFinal;
-  console.log('Costo Medio:', costoMedio);
+ this.costoMedio = costoMedio;
 
-  let newProducto = {
+  let newProducto: Producto = {
       codigo: codigo,
       instalacion: instalacion,
       inventario: palas,
-      costoUnitario: precio
+      costoUnitario: precio,
+      producto: this.productoNombre,
+      bodega: this.bodega
+
   }
 
   this.productos.push(newProducto)
@@ -97,8 +113,12 @@ CalcularValores(palas: number, codigo:number, instalacion:string, precio:number)
 }
 
 click(){
-  this.CalcularValores(900, 155882, 'DI', 35);
+  //this.CalcularValores(900, 155882, 'DI', 35);
+  console.log(this.codigoFormulario, this.cantidadFormulario,this.instalacionFormulario,this.precioFormulario);
+  this.CalcularValores(this.cantidadFormulario, this.codigoFormulario, this.instalacionFormulario, this.precioFormulario);
 }
 
 
 }
+
+
