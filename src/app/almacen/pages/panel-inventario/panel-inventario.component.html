@@ -2,7 +2,7 @@
     <div class="container">
         <img src="https://www.coronatoolsusa.com/hs-fs/hubfs/Corona_6-16/corona_website-10.png?width=684&name=corona_website-10.png">
 
-        <h3>1.Realice un algoritmo que resuelva el siguiente problema: Se tiene una tabla con el inventario por bodegas de un producto en específico. Como ejemplo luce de la siguiente forma (Diseñe el algoritmo asumiendo que la tabla tiene una alta cantidad
+        <h3 class="mt-3">1.Realice un algoritmo que resuelva el siguiente problema: Se tiene una tabla con el inventario por bodegas de un producto en específico. Como ejemplo luce de la siguiente forma (Diseñe el algoritmo asumiendo que la tabla tiene una alta cantidad
             de datos, la información de abajo es solo para entender la estructura):
         </h3>
 
@@ -35,62 +35,73 @@
 
 
 
-
-
         <div class="row">
-            <div class="col-lg-6">
-                <div class="form__group field">
-                    <input class="form__field" id="codigo" [(ngModel)]="codigoFormulario" type="number" placeholder="Codigo de producto:">
-                    <label class="form__label">Codigo de producto:</label>
-                </div>
-                <div class="form__group field">
-                    <input class="form__field" id="productos" [(ngModel)]="productoNombre" type="string" placeholder="Nombre de producto: ">
-                    <label class="form__label">Nombre de producto:</label>
-                </div>
-                <div class="form__group field">
-                    <input class="form__field" id="palas" [(ngModel)]="cantidadFormulario" type="number" placeholder="Cantidad de compra: ">
-                    <label class="form__label">Cantidad de compra:</label>
-                </div>
-                <div class="form__group field">
-                    <input class="form__field" id="instalacion" [(ngModel)]="instalacionFormulario" type="text" placeholder="Instalacion: ">
-                    <label class="form__label">Instalacion:</label>
-                </div>
-                <div class="form__group field">
-                    <input class="form__field" id="storage" [(ngModel)]="bodega" type="text" placeholder="Bodega: ">
-                    <label class="form__label">Bodega:</label>
-                </div>
-                <div class="form__group field">
-                    <input class="form__field" id="precio" [(ngModel)]="precioFormulario" type="number" placeholder="Precio de Compra: ">
-                    <label class="form__label" [(ngModel)]="precioFormulario">Precio de compra:</label>
-                </div>
+
+          <div [ngClass]="{
+            'col-6': productos.length > 6
+          }">
+            <form autocomplete="off" [formGroup]="miFormulario">
+              <mat-form-field class="example-full-width">
+                <mat-label>Codigo de producto:</mat-label>
+                <input matInput formControlName="codigo" type="number">
+              </mat-form-field>
+              <span class="text-danger" *ngIf="campoNoEsValido('codigo')">Este campo es obligatorio</span>
+              <mat-form-field class="example-full-width">
+                <mat-label>Nombre de producto:</mat-label>
+                <input matInput formControlName="producto">
+              </mat-form-field>
+              <span class="text-danger" *ngIf="campoNoEsValido('producto')">Este campo es obligatorio</span>
+              <mat-form-field class="example-full-width">
+                <mat-label>Cantidad de compra:</mat-label>
+                <input matInput formControlName="cantidad" type="number">
+              </mat-form-field>
+              <span class="text-danger" *ngIf="campoNoEsValido('cantidad')">Este campo es obligatorio y debe ser mayor a
+                0</span>
+              <mat-form-field class="example-full-width">
+                <mat-label>Instalacion:</mat-label>
+                <input matInput formControlName="instalacion" type="text">
+              </mat-form-field>
+              <span class="text-danger" *ngIf="campoNoEsValido('instalacion')">Este campo es obligatorio</span>
+              <mat-form-field class="example-full-width">
+                <mat-label>Bodega:</mat-label>
+                <input matInput formControlName="bodega">
+              </mat-form-field>
+              <span class="text-danger" *ngIf="campoNoEsValido('bodega')">Este campo es obligatorio</span>
+              <mat-form-field class="example-full-width">
+                <mat-label>Precio de compra:</mat-label>
+                <input matInput formControlName="precio" type="number">
+                <span matPrefix>$&nbsp;</span>
+              </mat-form-field>
+              <span class="text-danger" *ngIf="campoNoEsValido('precio')">Este campo es obligatorio y debe ser mayor a 0</span>
+            </form>
+          </div>
+          <div class="col-6">
+            <div *ngIf="productos.length > 6">
+              <tr>
+                <th>Inventario valorado:</th>
+                <th>Costo de entrada:</th>
+                <th>Inventario final:</th>
+                <th>Costo final:</th>
+                <th>Costo medio:</th>
+              </tr>
+              <tr>
+                <td>{{inventarioValorado}} </td>
+                <td>{{costoEntrada | currency}} </td>
+                <td>{{inventarioFinal}} </td>
+                <td>{{costoFinal | currency}} </td>
+                <td>{{costoMedio}} </td>
+              </tr>
             </div>
-            <div class="col-lg-6">
-                <div class="resultado">
-                    <tr>
-                        <th>Inventario valorado:</th>
-                        <th>Costo de entrada:</th>
-                        <th>Inventario final:</th>
-                        <th>Costo final:</th>
-                        <th>Costo medio:</th>
-                    </tr>
-                    <tr>
-                        <td>{{inventarioValorado}} </td>
-                        <td> {{costoEntrada}} </td>
-                        <td>{{inventarioFinal}} </td>
-                        <td>{{costoFinal}} </td>
-                        <td>{{costoMedio}} </td>
-                    </tr>
-                </div>
-            </div>
+          </div>
         </div>
         <div style="padding-top: 2em;">
-            <button mat-raised-button color="warn" (click)="click()">Calcular</button>
+          <button mat-raised-button color="warn" (click)="guardar()">Calcular</button>
         </div>
-    </div>
-    <footer class="footer bg-dark text-center">
-        <div class="container">
+        </div>
+        <footer class="footer bg-dark text-center">
+          <div class="container">
 
             <p> &copy; 2022 | Corona Clipper</p>
 
-        </div>
-    </footer>
+          </div>
+        </footer>

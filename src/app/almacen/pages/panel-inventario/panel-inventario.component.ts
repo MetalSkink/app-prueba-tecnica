@@ -1,18 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Producto } from '../../interfaces/producto.interface';
 import { filtrarProductos, CalcularInventarioValorado, CalcularInventarioFinal } from "../../helpers/functions";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-panel-inventario',
   templateUrl: './panel-inventario.component.html',
   styleUrls: ['./panel-inventario.component.css']
 })
-export class PanelInventarioComponent implements OnInit {
+export class PanelInventarioComponent   {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  constructor(private fb:FormBuilder) { }
 
   productos: Producto[] = [{
     codigo: 155882,
@@ -64,12 +62,15 @@ export class PanelInventarioComponent implements OnInit {
 }
 ]
 
-codigoFormulario: number = 0
-productoNombre: string = ''
-cantidadFormulario: number = 0
-instalacionFormulario: string = ''
-bodega: string = ""
-precioFormulario: number = 0
+miFormulario: FormGroup = this.fb.group({
+  codigo: [, [Validators.required, Validators.min(0)]],
+  producto: [, Validators.required],
+  cantidad: [, [Validators.required, Validators.min(0)]],
+  instalacion: [, Validators.required],
+  bodega: [, Validators.required],
+  precio: [, [Validators.required, Validators.min(0)]],
+})
+
 //---------------------------------------------------------
 
 inventarioValorado!: number;
@@ -79,46 +80,51 @@ costoFinal!: number;
 costoMedio!: number;
 
 
-CalcularValores(palas: number, codigo:number, instalacion:string, precio:number):void {
+CalcularValores(codigo:number,producto:string, cantidad: number, instalacion:string,bodega: string, precio:number):void {
 
   let productosFiltrados = filtrarProductos(this.productos, codigo, instalacion);
 
   let inventarioValorado = CalcularInventarioValorado(productosFiltrados);
   this.inventarioValorado = inventarioValorado;
 
-  let costoEntrada = palas * precio;
+  let costoEntrada = cantidad * precio;
   this.costoEntrada = costoEntrada;
 
-  let inventarioFinal = CalcularInventarioFinal(productosFiltrados, palas)
+  let inventarioFinal = CalcularInventarioFinal(productosFiltrados, cantidad)
   this.inventarioFinal = inventarioFinal;
 
   let costoFinal = inventarioValorado + costoEntrada
   this.costoFinal = costoFinal;
 
   let costoMedio = costoFinal / inventarioFinal;
- this.costoMedio = costoMedio;
+  this.costoMedio = costoMedio;
 
   let newProducto: Producto = {
       codigo: codigo,
       instalacion: instalacion,
-      inventario: palas,
+      inventario: cantidad,
       costoUnitario: precio,
-      producto: this.productoNombre,
-      bodega: this.bodega
-
-  }
-
+      producto: producto,
+      bodega: bodega
+}
   this.productos.push(newProducto)
-  console.log(this.productos)
 }
 
-click(){
+guardar(){
   //this.CalcularValores(900, 155882, 'DI', 35);
-  console.log(this.codigoFormulario, this.cantidadFormulario,this.instalacionFormulario,this.precioFormulario);
-  this.CalcularValores(this.cantidadFormulario, this.codigoFormulario, this.instalacionFormulario, this.precioFormulario);
+  if (this.miFormulario.invalid) {
+    this.miFormulario.markAllAsTouched();
+    return
+  }
+  const {codigo,producto,cantidad,instalacion,bodega,precio } = this.miFormulario.value;
+
+  this.CalcularValores(codigo,producto,cantidad,instalacion,bodega,precio);
+}
+
+campoNoEsValido(campo: string){
+  return this.miFormulario.controls[campo].errors &&
+         this.miFormulario.controls[campo].touched
 }
 
 
 }
-
-

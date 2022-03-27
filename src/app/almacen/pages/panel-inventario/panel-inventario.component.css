@@ -6,13 +6,13 @@ table {
 
 td,
 th {
-    border: 1px solid #dddddd;
+    border: 1px solid #020000;
     text-align: left;
     padding: 8px;
 }
 
 tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: #0e0000;
 }
 
 h3 {
@@ -23,11 +23,13 @@ h1 {
     text-align: center;
 }
 
-.resultado {
-    margin-top: 5em;
-}
 
-.fondo {}
+.fondo {
+  background: #0f0c29;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+}
 
 .example-form {
     min-width: 150px;
@@ -50,7 +52,7 @@ h1 {
     font-family: inherit;
     width: 100%;
     border: 0;
-    border-bottom: 2px solid #9b9b9b;
+    border-bottom: 2px solid #c51818;
     outline: 0;
     font-size: 1.3rem;
     color: rgb(5, 5, 5);
@@ -114,4 +116,8 @@ img {
     margin-left: auto;
     margin-right: auto;
     width: 60%;
+}
+
+.text-danger{
+  color: #c51818;
 }
